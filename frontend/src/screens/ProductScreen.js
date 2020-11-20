@@ -28,8 +28,8 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match.params.id]);
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
-  }
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -94,7 +94,7 @@ const ProductScreen = ({ history, match }) => {
                           onChange={(e) => setQty(e.target.value)}>
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
-                              {x + 1}  
+                              {x + 1}
                             </option>
                           ))}
                         </Form.Control>
@@ -105,7 +105,7 @@ const ProductScreen = ({ history, match }) => {
 
                 <ListGroup.Item>
                   <Button
-                  onClick={addToCartHandler}
+                    onClick={addToCartHandler}
                     className="btn-block"
                     type="button"
                     disabled={product.countInStock === 0}>
