@@ -3,6 +3,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -28,16 +29,21 @@ export const login = (email, password) => async (dispatch) => {
       payload: data,
     });
 
-    localStorage.setItem('userInfo', JSON.stringify(data))
-
-
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
-        type: USER_LOGIN_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
+      type: USER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
+};
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("userInfo");
+  dispatch({
+    type: USER_LOGOUT,
+  });
 };
